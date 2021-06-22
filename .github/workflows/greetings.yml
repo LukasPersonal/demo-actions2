@@ -1,0 +1,10 @@
+name: test
+
+on: 
+  push:
+
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: lukaspersonal/demo-actions3@master

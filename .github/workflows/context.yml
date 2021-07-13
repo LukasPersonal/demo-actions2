@@ -17,41 +17,27 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - name: Wait for app build success
-      uses: fountainhead/action-wait-for-check@v1.0.0
-      id: wait-for-build-success
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        checkName: CI
-        ref: ${{ github.event.pull_request.head.sha || github.sha }}
-  
     - name: Dump GitHub context
-      if: steps.wait-for-build-success.outputs.conclusion == 'success'
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
       run: echo "$GITHUB_CONTEXT"
     - name: Dump job context
-      if: steps.wait-for-build-success.outputs.conclusion == 'success'
       env:
         JOB_CONTEXT: ${{ toJson(job) }}
       run: echo "$JOB_CONTEXT"
     - name: Dump steps context
-      if: steps.wait-for-build-success.outputs.conclusion == 'success'
       env:
         STEPS_CONTEXT: ${{ toJson(steps) }}
       run: echo "$STEPS_CONTEXT"
     - name: Dump runner context
-      if: steps.wait-for-build-success.outputs.conclusion == 'success'
       env:
         RUNNER_CONTEXT: ${{ toJson(runner) }}
       run: echo "$RUNNER_CONTEXT"
     - name: Dump strategy context
-      if: steps.wait-for-build-success.outputs.conclusion == 'success'
       env:
         STRATEGY_CONTEXT: ${{ toJson(strategy) }}
       run: echo "$STRATEGY_CONTEXT"
     - name: Dump matrix context
-      if: steps.wait-for-build-success.outputs.conclusion == 'success'
       env:
         MATRIX_CONTEXT: ${{ toJson(matrix) }}
       run: echo "$MATRIX_CONTEXT"
